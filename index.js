@@ -1,5 +1,6 @@
 const app = require("express")();
 const MongoHelper = require('./mongo.helper');
+const dotenv = require("dotenv");
 
 require('dotenv').config();
 
@@ -7,6 +8,7 @@ dotenv.config();
 
 MongoHelper.connect(process.env.MONGO_URI);
 
+app.use(require("body-parser").json());
 
 const { userController } = require("./src/controller");
 
@@ -15,7 +17,6 @@ app.get("/users", userController.findAll);
 app.post("/user/add", userController.save);
 app.delete("/user/delete", userController.delete);
 app.put("/user/update", userController.update);
-
 
 
 const port = process.env.PORT || 8000;

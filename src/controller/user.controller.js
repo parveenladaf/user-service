@@ -1,6 +1,7 @@
 "use strict";
 
 const UserManager = require("../biz/user.manager");
+const BaseController = require('./base.controller');
 
 /**
  * Authentication Controller for handling login.
@@ -9,14 +10,16 @@ class UserController extends BaseController {
   /**
    * default constructor 
    */
-  constructor() { }
+  constructor() {
+    super()
+  }
 
 
   async findOne(req, res) {
     try {
       const userManager = new UserManager();
       const result = await userManager.findOne(req.body);
-      super.ok(res, result);
+      super.ok(res, result); 5
     } catch (err) {
       super.error(res, err);
     }

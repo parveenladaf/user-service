@@ -1,6 +1,6 @@
 'use strict';
-const HEADER = require('../constant/header.constant');
-const STATUS = require('../constant/status.constant');
+const HEADER = require('../constant/header');
+const STATUS = require('../constant/status');
 const ErrorManager = require('../biz/error.manager');
 
 class BaseController {
@@ -13,9 +13,9 @@ class BaseController {
 
     error(res, err) {
         res.status(err.status || STATUS.ERROR)
-        .send(ErrorManager.format(err));
+            .send(ErrorManager.format(err));
 
-            
+
     }
 }
 
