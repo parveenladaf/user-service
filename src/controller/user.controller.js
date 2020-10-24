@@ -14,21 +14,10 @@ class UserController extends BaseController {
     super()
   }
 
-
-  async findOne(req, res) {
-    try {
-      const userManager = new UserManager();
-      const result = await userManager.findOne(req.body);
-      super.ok(res, result); 5
-    } catch (err) {
-      super.error(res, err);
-    }
-  }
-
   async findAll(req, res) {
     try {
       const userManager = new UserManager();
-      const result = await userManager.findAll(req.body);
+      const result = await userManager.findUsers();
       super.ok(res, result);
     } catch (err) {
       super.error(res, err);
@@ -38,7 +27,7 @@ class UserController extends BaseController {
   async save(req, res) {
     try {
       const userManager = new UserManager();
-      const result = await userManager.save(req.body);
+      const result = await userManager.saveUser(req.body);
       super.ok(res, result);
     } catch (err) {
       super.error(res, err);
@@ -48,7 +37,7 @@ class UserController extends BaseController {
   async update(req, res) {
     try {
       const userManager = new UserManager();
-      const result = await userManager.update(req.body);
+      const result = await userManager.update(req);
       super.ok(res, result);
     } catch (err) {
       super.error(res, err);
@@ -58,7 +47,7 @@ class UserController extends BaseController {
   async delete(req, res) {
     try {
       const userManager = new UserManager();
-      const result = await userManager.delete(req.body);
+      const result = await userManager.delete(req.params.id);
       super.ok(res, result);
     } catch (err) {
       super.error(res, err);
